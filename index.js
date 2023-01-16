@@ -23,7 +23,7 @@ const categories = require('./routes/categories')
 const filters = require('./routes/filters')
 const countries = require('./routes/countries')
 const favourites = require('./routes/favourites')
-// const thumbnails = require('./routes/thumbnails')
+const thumbnails = require('./routes/thumbnails')
 
 const PORT = process.env.PORT || 9001;
 // const PORT = 3000;
@@ -61,6 +61,6 @@ app.use('/jobs', jobs)
 app.use('/job/applications', jobShare)
 app.use('/projects', projects)
 app.use('/favourites', favourites)
-// app.use('/thumbnails', thumbnails)
+app.use('/thumbnails', thumbnails)
 
 app.listen(PORT, () => console.log('server started'))
