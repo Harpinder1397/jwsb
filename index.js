@@ -12,6 +12,11 @@ const mongoose = require('mongoose')
 const swaggerDocument = require('./swagger.json')
 
 const getAllStates = require('./routes/states')
+const loginRouter = require('./routes/login')
+const jobs = require('./routes/jobs')
+const jobShare = require('./routes/jobShare')
+const user = require('./routes/user')
+
 const PORT = process.env.PORT || 9001;
 // const PORT = 3000;
 
@@ -37,6 +42,17 @@ app.get('/dummy', (_, res) => {
 app.use(express.static('public'));
 // app.use(express.json());
 
-app.use("/state", getAllStates)
+app.use('/login', loginRouter)
+app.use('/user', user)
+// app.use('/upload', uploadApi)
+// app.use('/categories', categories)
+// app.use('/filters', filters)
+// app.use('/countries', countries)
+app.use('/states', getAllStates)
+app.use('/jobs', jobs)
+app.use('/job/applications', jobShare)
+// app.use('/projects', projects)
+// app.use('/favourites', favourites)
+// app.use('/thumbnails', thumbnails)
 
 app.listen(PORT, () => console.log('server started'))
