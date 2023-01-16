@@ -1,7 +1,5 @@
 window = {}
 
-
-// Import packages
 const express = require('express')
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
@@ -14,17 +12,8 @@ const mongoose = require('mongoose')
 const swaggerDocument = require('./swagger.json')
 
 const getAllStates = require('./routes/states')
-
-app.get('/', (_, res) => {
-    res.json({ message: "hello there" })
-  })
-  
-  // This is for test api call
-  
-  app.get('/dummy', (_, res) => {
-    res.json({ message: "Test is passed" })
-  })
-  
+const PORT = process.env.PORT || 9001;
+// const PORT = 3000;
 
 mongoose.connect('mongodb+srv://Harpinder0:harpindersingh@cluster0.vl3kis6.mongodb.net/sell3cart?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then(() => console.log('I am connected'))
@@ -35,13 +24,19 @@ app.use(cors())
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.get('/', (_, res) => {
+  res.json({ message: "hello there" })
+})
 
-// Middlewares
-app.use(express.json());
+// This is for test api call
 
-// Routes
-app.use("/state", getAllStates);
+app.get('/dummy', (_, res) => {
+  res.json({ message: "Test is passed" })
+})
 
-// connection
-const port = process.env.PORT || 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+app.use(express.static('public'));
+// app.use(express.json());
+
+app.use("/state", getAllStates)
+
+app.listen(PORT, () => console.log('server started'))
