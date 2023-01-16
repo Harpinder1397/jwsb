@@ -7,30 +7,11 @@ const bcryptjs = require("bcryptjs")
 // const cookieParser = require('cookie-parser')
 
 const { Router } = require("express")
-var multer  = require('multer');
 const { validate } = require("micro-validator").default
 const userInfoValidations = require("../validation/userInfo")
 const { User } = require("../models/userInfo")
 
-// const {
-//   GOOGLE_CLIENT_ID,
-//   GOOGLE_CLIENT_SECRET,
-//   SERVER_ROOT_URI,
-//   UI_ROOT_URI,
-//   JWT_SECRET,
-//   COOKIE_NAME
-// } = require('../middleware/config.js');
-
-var upload = multer({ dest: __dirname + '/public/uploads/' });
 const user = Router();
-
-var type = upload.single('upl');
-
-const requiredTypes = ["business", "startup", "individual"]
-const requiredServiceTypes = ["design", "development", "both"]
-const requiredStates = ["mobile", "web", "mobileUI", "webUI", "branding"]
-
-// console.log(JWT_SECRET, 'JWT_SECRET')
 
 const generatePassword = (rawPassword = "") =>
   new Promise((resolve, reject) => {

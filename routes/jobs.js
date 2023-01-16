@@ -1,25 +1,9 @@
 const { Router } = require('express')
-const multer = require('multer');
 const path = require('path');
 const jobs = Router()
 
 const { Jobs } = require('../models/jobs')
 
-// image upload
-const storage = multer.diskStorage({
-  destination: './public/jobImage/',
-  filename: function(req, file, cb){
-    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
-
-const upload = multer({
-  storage: storage,
-  // limits:{fileSize: 1000000},
-  fileFilter: function(req, file, cb){
-    checkFileType(file, cb);
-  }
-}).single('jobImageUploader');
 
 // Check File Type
 function checkFileType(file, cb){
