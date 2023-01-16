@@ -47,7 +47,7 @@ app.get('/dummy', (_, res) => {
   res.json({ message: "Test is passed" })
 })
 
-app.use(express.static('public'));
+app.use(express.json());
 
 app.use('/login', loginRouter)
 app.use('/user', user)
