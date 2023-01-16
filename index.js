@@ -1,3 +1,5 @@
+window = {}
+
 const express = require('express')
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
@@ -9,22 +11,7 @@ const mongoose = require('mongoose')
 
 const swaggerDocument = require('./swagger.json')
 
-const loginRouter = require('./routes/login')
-const jobs = require('./routes/jobs')
-const jobShare = require('./routes/jobShare')
-const user = require('./routes/user')
-// const countryExternalApi = require('./routes/countryExternalApi')
-// const stateExternalApi = require('./routes/stateExternalApi')
-// const account = require('./routes/account')
-const uploadApi = require('./routes/upload');
 const getAllStates = require('./routes/states')
-const projects = require('./routes/projects')
-const categories = require('./routes/categories')
-const filters = require('./routes/filters')
-const countries = require('./routes/countries')
-const favourites = require('./routes/favourites')
-const thumbnails = require('./routes/thumbnails')
-dotenv.config({path: './config.env'});
 const PORT = process.env.PORT || 9001;
 // const PORT = 3000;
 
@@ -47,22 +34,9 @@ app.get('/dummy', (_, res) => {
   res.json({ message: "Test is passed" })
 })
 
-app.use(express.json());
+app.use(express.static('public'));
+// app.use(express.json());
 
-app.use('/login', loginRouter)
-app.use('/user', user)
-// app.use('/dictionary/countries', countryExternalApi)
-// app.use('/state', stateExternalApi)
-// app.use('/account', account)
-app.use('/upload', uploadApi)
-app.use('/categories', categories)
-app.use('/filters', filters)
-app.use('/countries', countries)
-app.use('/states', getAllStates)
-app.use('/jobs', jobs)
-app.use('/job/applications', jobShare)
-app.use('/projects', projects)
-app.use('/favourites', favourites)
-app.use('/thumbnails', thumbnails)
+app.use("/state", getAllStates)
 
 app.listen(PORT, () => console.log('server started'))
