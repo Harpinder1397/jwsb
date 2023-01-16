@@ -17,7 +17,7 @@ const jobs = require('./routes/jobs')
 const jobShare = require('./routes/jobShare')
 const user = require('./routes/user')
 
-const uploadApi = require('./routes/upload');
+// const uploadApi = require('./routes/upload');
 const projects = require('./routes/projects')
 const categories = require('./routes/categories')
 const filters = require('./routes/filters')
@@ -52,7 +52,7 @@ app.use(express.static('public'));
 
 app.use('/login', loginRouter)
 app.use('/user', user)
-app.use('/upload', uploadApi)
+// app.use('/upload', uploadApi)
 app.use('/categories', categories)
 app.use('/filters', filters)
 app.use('/countries', countries)
