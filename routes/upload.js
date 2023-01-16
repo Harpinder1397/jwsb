@@ -2,7 +2,7 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const { Router } = require('express')
-const { User } = require("../models/userInfo")
+// const { User } = require("../models/userInfo")
 
 const uploading = Router()
 
