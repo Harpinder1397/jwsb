@@ -15,6 +15,16 @@ const swaggerDocument = require('./swagger.json')
 
 const getAllStates = require('./routes/states')
 
+app.get('/', (_, res) => {
+    res.json({ message: "hello there" })
+  })
+  
+  // This is for test api call
+  
+  app.get('/dummy', (_, res) => {
+    res.json({ message: "Test is passed" })
+  })
+  
 
 mongoose.connect('mongodb+srv://Harpinder0:harpindersingh@cluster0.vl3kis6.mongodb.net/sell3cart?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then(() => console.log('I am connected'))
